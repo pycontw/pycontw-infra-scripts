@@ -1,2 +1,3 @@
-# pycontw-infra-scripts
-The scripts for launching PyCon TW services 
+# PyCon TW Infra Scripts
+
+The scripts for launching PyCon TW services.

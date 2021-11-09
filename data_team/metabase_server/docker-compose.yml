@@ -1,0 +1,32 @@
+version: "2.4"
+services:
+  nginx:
+    image: nginx
+    restart: always
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+      - ./nginx/logs:/var/log/nginx
+      - ./nginx:/etc/nginx/conf.d
+    ports:
+      - 80:80
+      - 443:443
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+
+  certbot:
+    restart: unless-stopped 
+    image: certbot/certbot
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+
+  metabase:
+    restart: always
+    image: metabase/metabase
+    ports:
+      - 3000:3000
+    volumes:
+      - ./metabase.db:/metabase-data
+    environment:
+      - MB_DB_FILE=/metabase-data/metabase.db
