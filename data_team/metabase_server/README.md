@@ -18,3 +18,7 @@ Follow the procedures to launch the Metabase server on a machine:
 ## Acknowledge
 
 The scripts is implemented on the basis of [wmnnd/nginx-certbot](https://github.com/wmnnd/nginx-certbot) with the guidance from [this article](https://pentacent.medium.com/nginx-and-lets-encrypt-with-docker-in-less-than-5-minutes-b4b8a60d3a71).
+
+## Data Recovery
+
+* For Postgres: Follow this [link](https://www.codegrepper.com/code-examples/sql/copy+data+from+one+postgres+container+to+another) to transfer data from the existing container
