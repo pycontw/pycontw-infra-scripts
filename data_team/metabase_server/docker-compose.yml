@@ -2,7 +2,7 @@ version: "2.4"
 
 services:
   nginx:
-    image: nginx
+    image: nginx:1.21.6
     restart: always
     depends_on:
       - metabase
@@ -17,7 +17,7 @@ services:
     command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
 
   certbot:
-    image: certbot/certbot
+    image: certbot/certbot:v1.26.0
     restart: unless-stopped
     depends_on:
       - nginx
@@ -28,7 +28,7 @@ services:
 
   metabase:
     restart: always
-    image: metabase/metabase
+    image: metabase/metabase:v0.42.4
     depends_on:
       - postgres
     ports:
