@@ -26,17 +26,6 @@ services:
       - ./data/certbot/www:/var/www/certbot
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 
-  postgres:
-    image: postgres
-    restart: always
-    volumes:
-      - ./data/pgdata:/var/lib/postgresql/data/pgdata
-    environment:
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=metabase
-      - PGDATA="/var/lib/postgresql/data/pgdata"
-
   metabase:
     restart: always
     image: metabase/metabase
@@ -48,7 +37,7 @@ services:
       - MB_REDIRECT_ALL_REQUESTS_TO_HTTPS=false
       - MB_SITE_URL=null
       - MB_DB_DBNAME=metabase
-      - MB_DB_HOST=postgres
+      - MB_DB_HOST=<get the public IP from GCP Cloud SQL's db instance>
       - MB_DB_PASS=${POSTGRES_PASSWORD}
       - MB_DB_PORT=5432
       - MB_DB_TYPE=postgres
