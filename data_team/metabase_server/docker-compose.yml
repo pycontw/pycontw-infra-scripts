@@ -53,3 +53,14 @@ services:
       - MB_DB_PORT=5432
       - MB_DB_TYPE=postgres
       - MB_DB_USER=${POSTGRES_USER}
+
+  uptime-monitor:
+    image: uptime-monitor
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    depends_on:
+      - nginx
+    volumes:
+      - ./config.json:/discord-uptime/config.json
+      - ./servers.json:/discord-uptime/servers.json
