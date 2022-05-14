@@ -16,6 +16,7 @@ Follow the procedures to launch the Metabase server on a machine:
 2. (Run once) Configurate uptime-monitor, provide a vaild discord bot token and channel id in `config.json`
 3. Launch the service with `docker-compose up --build -d`.
 4. (Run once) Run the init script [`init.sh`](./init.sh) for activating certification renewal process.
+5. Login to postgres, import the back-up data if needed (`cat <backup folder>/dump_06-02-2022_12_43_12.sql | docker exec -i metabase_server_postgres_1 psql -U postgres`) and then change its password (`ALTER USER postgres WITH PASSWORD 'postgres';`)
 
 ## Acknowledge
 
