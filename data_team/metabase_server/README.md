@@ -14,6 +14,7 @@ Follow the procedures to launch the Metabase server on a machine:
 1. (Run once) Set up A record for your domain and let it point to the IP address of your machine.
 2. Launch the service with `docker-compose up --build -d`.
 3. (Run once) Run the init script [`init.sh`](./init.sh) for activating certification renewal process.
+4. Login to postgres, import the back-up data if needed (`cat <backup folder>/dump_06-02-2022_12_43_12.sql | docker exec -i metabase_server_postgres_1 psql -U postgres`) and then change its password (`ALTER USER postgres WITH PASSWORD 'postgres';`)
 
 ## Acknowledge
 
