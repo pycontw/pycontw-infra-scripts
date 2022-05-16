@@ -37,7 +37,7 @@ services:
       - MB_REDIRECT_ALL_REQUESTS_TO_HTTPS=false
       - MB_SITE_URL=null
       - MB_DB_DBNAME=metabase
-      - MB_DB_HOST=<get the public IP from GCP Cloud SQL's db instance>
+      - MB_DB_HOST=${CLOUD_SQL_IP}
       - MB_DB_PASS=${POSTGRES_PASSWORD}
       - MB_DB_PORT=5432
       - MB_DB_TYPE=postgres
