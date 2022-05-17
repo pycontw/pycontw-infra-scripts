@@ -1,9 +1,9 @@
 # Metabase Server
 
-[Metabase](https://www.metabase.com/) is an open-source business intelligence tool adopted by PyCon TW Data Team to track cross-year conference data. The docker-compose script handles four services:
+[Metabase](https://www.metabase.com/) is an open-source business intelligence tool adopted by PyCon TW Data Team to track cross-year conference data. The docker-compose script handles several services, as listed below:
 
 - `metabase`: The Metabase server.
-- `postgres`: The database storing the data used by the Metabase server.
+    - `postgres`: The database storing the data used by the Metabase server. Please get the public IP of our GCP cloud SQL and place it into [docker-compose.yml](./docker-compose.yml) 's `MB_DB_HOST`
 - `nginx`: The Nginx proxy that forces HTTPS connection and passes the requests to the metabase service. See the [configuration](./nginx) for details.
 - `certbot`: The service is responsible for the TSL certification auto-renewal of `metabase.pycon.tw`.
 
