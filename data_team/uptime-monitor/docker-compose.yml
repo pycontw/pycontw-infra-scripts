@@ -1,0 +1,12 @@
+version: "2.4"
+
+services:
+
+  uptime-monitor:
+    image: uptime-monitor
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./config.json:/discord-uptime/config.json
+      - ./servers.json:/discord-uptime/servers.json

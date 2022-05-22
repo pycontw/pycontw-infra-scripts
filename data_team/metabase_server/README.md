@@ -6,16 +6,14 @@
 - `postgres`: The database storing the data used by the Metabase server.
 - `nginx`: The Nginx proxy that forces HTTPS connection and passes the requests to the metabase service. See the [configuration](./nginx) for details.
 - `certbot`: The service is responsible for the TSL certification auto-renewal of `metabase.pycon.tw`.
-- `uptime-monitor`: This is a discord bot that check metabase service is alive.
 
 ## Usage
 
 Follow the procedures to launch the Metabase server on a machine:
 
 1. (Run once) Set up A record for your domain and let it point to the IP address of your machine.
-2. (Run once) Configurate uptime-monitor, provide a vaild discord bot token and channel id in `config.json`
-3. Launch the service with `docker-compose up --build -d`.
-4. (Run once) Run the init script [`init.sh`](./init.sh) for activating certification renewal process.
+2. Launch the service with `docker-compose up --build -d`.
+3. (Run once) Run the init script [`init.sh`](./init.sh) for activating certification renewal process.
 
 ## Acknowledge
 

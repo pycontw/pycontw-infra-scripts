@@ -1,11 +1,11 @@
 {
-  "token": "PASTE YOUR DISCORD BOT TOKEN",
+  "token": "YOUR DISCORD BOT TOKEN",
   "prefix": ">",
   "activity_type": "watching",
   "activity_name": "services",
   "disable_help": false,
   "hide_ips": true,
-  "notification_channel": pease_give_a_channel_id,
+  "notification_channel": YOUR_CHANNEL_ID,
   "retries": 3,
   "role_to_mention": 1234,
   "secs_between_ping": 30,
