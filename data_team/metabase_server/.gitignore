@@ -1,1 +1,4 @@
 .env
+data
+nginx/logs
+data_team_metabase_backup_sql

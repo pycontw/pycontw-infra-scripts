@@ -1,5 +1,10 @@
 version: "2.4"
 
+x-logging: &default-logging
+  options:
+    max-size: "1m"
+    max-file: "5"
+  driver: json-file
 services:
   nginx:
     image: nginx:1.21.6
@@ -15,6 +20,7 @@ services:
       - 80:80
       - 443:443
     command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+    logging: *default-logging
 
   certbot:
     image: certbot/certbot:v1.26.0
@@ -25,6 +31,20 @@ services:
       - ./data/certbot/conf:/etc/letsencrypt
       - ./data/certbot/www:/var/www/certbot
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+    logging: *default-logging
+
+
+  postgres:
+    image: postgres:15.2
+    restart: always
+    volumes:
+      - ./data/pgdata:/var/lib/postgresql/data/pgdata
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=metabase
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    logging: *default-logging
 
   metabase:
     restart: always
@@ -37,8 +57,9 @@ services:
       - MB_REDIRECT_ALL_REQUESTS_TO_HTTPS=false
       - MB_SITE_URL=null
       - MB_DB_DBNAME=metabase
-      - MB_DB_HOST=${CLOUD_SQL_IP}
+      - MB_DB_HOST=postgres
       - MB_DB_PASS=${POSTGRES_PASSWORD}
       - MB_DB_PORT=5432
       - MB_DB_TYPE=postgres
       - MB_DB_USER=${POSTGRES_USER}
+    logging: *default-logging
