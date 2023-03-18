@@ -29,3 +29,7 @@ The scripts is implemented on the basis of [wmnnd/nginx-certbot](https://github.
 ## Data Recovery
 
 * For Postgres: Follow this [link](https://www.codegrepper.com/code-examples/sql/copy+data+from+one+postgres+container+to+another) to transfer data from the existing container
+
+## More Details
+
+[https://www.notion.so/retro-2952a9e10a34468c9b8716eb285b7b86]
